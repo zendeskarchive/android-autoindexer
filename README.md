@@ -37,6 +37,10 @@ mvn clean package
 ```
 in directory with pom.xml.
 
+minSdkVersion = 10
+------------------
+AutoIndexer is compatible with Android 2.3 and newer.
+
 Todo
 ----
 * Documentation
