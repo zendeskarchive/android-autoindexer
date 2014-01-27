@@ -18,6 +18,8 @@ package com.getbase.autoindexer;
 
 import com.google.common.base.Objects;
 
+import java.util.Arrays;
+
 public class SqliteIndex {
   public final String mTable;
   public final String[] mColumns;
@@ -36,6 +38,11 @@ public class SqliteIndex {
 
     return Objects.equal(mTable, that.mTable) &&
         Objects.equal(mColumns, that.mColumns);
+  }
+
+  @Override
+  public String toString() {
+    return "SQLiteIndex on " + mTable + Arrays.toString(mColumns);
   }
 
   @Override
