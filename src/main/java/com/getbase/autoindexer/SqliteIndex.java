@@ -37,7 +37,7 @@ public class SqliteIndex {
     SqliteIndex that = (SqliteIndex) o;
 
     return Objects.equal(mTable, that.mTable) &&
-        Objects.equal(mColumns, that.mColumns);
+        Arrays.equals(mColumns, that.mColumns);
   }
 
   @Override
@@ -47,6 +47,6 @@ public class SqliteIndex {
 
   @Override
   public int hashCode() {
-    return Objects.hashCode(mTable, mColumns);
+    return Objects.hashCode(mTable, Arrays.hashCode(mColumns));
   }
 }
