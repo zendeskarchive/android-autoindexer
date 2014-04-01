@@ -31,15 +31,16 @@ import org.chalup.thneed.RelationshipVisitor;
 import java.util.Set;
 
 public final class AutoIndexer {
+
+  public static final String AUTO_INDEX_PREFIX = "auto_index";
+
   private AutoIndexer() {
   }
 
   private static final Joiner COLUMN_JOINER = Joiner.on(",");
-  private static final Joiner INDEX_NAME_JOINER = Joiner.on("_");
 
   public static String getCreateStatement(SqliteIndex index) {
-    String indexName = INDEX_NAME_JOINER.join("auto_index", index.mTable, index.mColumns);
-    return "CREATE INDEX " + indexName + " ON " + index.mTable + "(" + COLUMN_JOINER.join(index.mColumns) + ")";
+    return "CREATE INDEX " + index.getName() + " ON " + index.mTable + "(" + COLUMN_JOINER.join(index.mColumns) + ")";
   }
 
   public static Predicate<SqliteIndex> isIndexOnColumn(final String columnName) {

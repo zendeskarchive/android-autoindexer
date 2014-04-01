@@ -16,6 +16,7 @@
 
 package com.getbase.autoindexer;
 
+import com.google.common.base.Joiner;
 import com.google.common.base.Objects;
 
 import java.util.Arrays;
@@ -23,6 +24,8 @@ import java.util.Arrays;
 public class SqliteIndex {
   public final String mTable;
   public final String[] mColumns;
+
+  private static final Joiner INDEX_NAME_JOINER = Joiner.on("_");
 
   public SqliteIndex(String table, String... columns) {
     mTable = table;
@@ -38,6 +41,10 @@ public class SqliteIndex {
 
     return Objects.equal(mTable, that.mTable) &&
         Arrays.equals(mColumns, that.mColumns);
+  }
+
+  public String getName() {
+    return INDEX_NAME_JOINER.join(AutoIndexer.AUTO_INDEX_PREFIX, mTable, mColumns);
   }
 
   @Override
